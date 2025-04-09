@@ -26,23 +26,22 @@ public class App implements CommandLineRunner {
         while (!sair) {
             out.println("\n## GERENCIADOR DE MÚSICAS ##");
             out.println("(1) Criar música");
-            out.println("(2) Ler todas as músicas");
+            out.println("(2) Ler músicas");
             out.println("(3) Alterar música");
             out.println("(4) Apagar música");
             out.println("(0) Sair");
             out.print("Escolha uma opção: ");
             int opcao = Integer.parseInt(entrada.nextLine());
-
-            switch (opcao) {
-                case 1 -> criar();
-                case 2 -> lerTodos();
-                case 3 -> alterar();
-                case 4 -> apagar();
-                case 0 -> sair = true;
-                default -> out.println("## Opção inválida! ##");
+            switch(opcao) {
+				case 1: criar(); break; 
+				case 2: lerTodos(); break; 
+				case 4: alterar(); break;
+				case 5: apagar(); break;
+				case 0: sair = true; break;
+				default:
+					out.println("## Opção inválida! ##");
             }
         }
-        out.println("Aplicação encerrada.");
     }
 
     private void criar() {
@@ -55,7 +54,7 @@ public class App implements CommandLineRunner {
 
         Musica m = new Musica(titulo, compositor, ano);
         repositorio.save(m);
-        out.println("Música criada com sucesso!");
+        out.println("Música criada!");
     }
 
     private void lerTodos() {
@@ -73,11 +72,11 @@ public class App implements CommandLineRunner {
         var musica = repositorio.findById(id);
         if (musica.isPresent()) {
             Musica m = musica.get();
-            out.print("Novo título (" + m.getTitulo() + "): ");
+            out.print("Novo título: ");
             m.setTitulo(entrada.nextLine());
-            out.print("Novo compositor (" + m.getCompositor() + "): ");
+            out.print("Novo compositor: ");
             m.setCompositor(entrada.nextLine());
-            out.print("Novo ano (" + m.getAno() + "): ");
+            out.print("Novo ano: ");
             m.setAno(Integer.parseInt(entrada.nextLine()));
             repositorio.save(m);
             out.println("Música atualizada.");
