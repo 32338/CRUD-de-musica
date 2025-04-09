@@ -35,8 +35,8 @@ public class App implements CommandLineRunner {
             switch(opcao) {
 				case 1: criar(); break; 
 				case 2: lerTodos(); break; 
-				case 4: alterar(); break;
-				case 5: apagar(); break;
+				case 3: alterar(); break;
+				case 4: apagar(); break;
 				case 0: sair = true; break;
 				default:
 					out.println("## Opção inválida! ##");
